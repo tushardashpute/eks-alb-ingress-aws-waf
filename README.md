@@ -152,38 +152,37 @@ Add the AWS WAF web ACL annotation to your ALB Ingress
  
 1. Edit the ALB Ingress and add the alb.ingress.kubernetes.io/waf-acl-id: annotation with the AWS WAF ID that you copied earlier:
 
-     kubectl edit ingress/ingress-2048 -n game-2048
+         kubectl edit ingress/ingress-2048 -n game-2048
 
-
-      apiVersion: v1
-      items:
-      - apiVersion: networking.k8s.io/v1
-        kind: Ingress
-        metadata:
-          annotations:
-            alb.ingress.kubernetes.io/scheme: internet-facing
-            alb.ingress.kubernetes.io/target-type: instance
-            alb.ingress.kubernetes.io/waf-acl-id: arn:aws:wafv2:us-east-2:462483370869:regional/webacl/albWAF/5c677ad3-2d3b-4fb3-b824-a642f7ea6aa4
-          finalizers:
-          - ingress.k8s.aws/resources
-          generation: 1
-          name: ingress-2048
-          namespace: game-2048
-          resourceVersion: "91357"
-          uid: a8a2d5c8-da4f-470f-8d83-a4d1acc5c2e3
-        spec:
-          rules:
-          - http:
-              paths:
-              - backend:
-                  service:
-                    name: service-2048
-                    port:
-                      number: 80
-                path: /
-                pathType: Prefix
-        status:
-          loadBalancer:
-            ingress:
-            - hostname: k8s-game2048-ingress2-6d68b24489-553167937.us-east-2.elb.amazonaws.com
+         apiVersion: v1
+         items:
+         - apiVersion: networking.k8s.io/v1
+           kind: Ingress
+           metadata:
+             annotations:
+               alb.ingress.kubernetes.io/scheme: internet-facing
+               alb.ingress.kubernetes.io/target-type: instance
+               alb.ingress.kubernetes.io/waf-acl-id: arn:aws:wafv2:us-east-2:462483370869:regional/webacl/albWAF/5c677ad3-2d3b-4fb3-b824-a642f7ea6aa4
+             finalizers:
+             - ingress.k8s.aws/resources
+             generation: 1
+             name: ingress-2048
+             namespace: game-2048
+             resourceVersion: "91357"
+             uid: a8a2d5c8-da4f-470f-8d83-a4d1acc5c2e3
+           spec:
+             rules:
+             - http:
+                 paths:
+                 - backend:
+                     service:
+                       name: service-2048
+                       port:
+                         number: 80
+                   path: /
+                   pathType: Prefix
+           status:
+             loadBalancer:
+               ingress:
+               - hostname: k8s-game2048-ingress2-6d68b24489-553167937.us-east-2.elb.amazonaws.com
 
