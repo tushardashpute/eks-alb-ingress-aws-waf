@@ -45,7 +45,7 @@ Note: Copy the name of the policy's Amazon Resource Name (ARN) that's returned i
 
 4. Create an IAM role for the AWS Load Balancer Controller and attach the role to the service account created in step 2:
 
-      eksctl create iamserviceaccount --cluster=eksdemo-qa --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::4627568568669:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve --region us-east-2
+              eksctl create iamserviceaccount --cluster=eksdemo-qa --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::4627568568669:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve --region us-east-2
 
 Install the AWS Load Balancer Controller using Helm 3.0.0
 
@@ -99,7 +99,7 @@ Deploy Smaple Example:
 
 1.    Deploy an example application to verify that the ALB Ingress Controller creates an Application Load Balancer as a result of the Ingress object:
 
-       kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
+        kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
        
         namespace/game-2048 created
         deployment.apps/deployment-2048 created
