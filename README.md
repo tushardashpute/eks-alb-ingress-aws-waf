@@ -97,7 +97,7 @@ Install the AWS Load Balancer Controller using Helm 3.0.0
 
 **Deploy Smaple Example:**
 
-1.    Deploy an example application to verify that the ALB Ingress Controller creates an Application Load Balancer as a result of the Ingress object:
+1. Deploy an example application to verify that the ALB Ingress Controller creates an Application Load Balancer as a result of the Ingress object:
 
          kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
        
@@ -106,7 +106,7 @@ Install the AWS Load Balancer Controller using Helm 3.0.0
          service/service-2048 created
          ingress.networking.k8s.io/ingress-2048 created
         
-2.  Verify that the Ingress resource is created and is associated with an Application Load Balancer:
+2. Verify that the Ingress resource is created and is associated with an Application Load Balancer:
 
         kubectl get ingress ingress-2048 -n game-2048
 
@@ -120,15 +120,15 @@ Install the AWS Load Balancer Controller using Helm 3.0.0
 **Create a web ACL**
 When you create a web ACL, choose the same Region that you're using for your Amazon EKS cluster and do the following:
 
-1.    Associate your web ACL with the Application Load Balancer.
+1. Associate your web ACL with the Application Load Balancer.
 
-2.    Choose an Application Load Balancer as your resource type.
+2. Choose an Application Load Balancer as your resource type.
 
-3.    Add the Amazon CloudWatch metric name for your web ACL.
+3. Add the Amazon CloudWatch metric name for your web ACL.
 
-4.    Add any desired conditions and rules to your web ACL.
+4. Add any desired conditions and rules to your web ACL.
 
-5.    Copy the AWS WAF ID from the AWS WAF console, or download the AWS WAF web ACL JSON file.
+5. Copy the AWS WAF ID from the AWS WAF console, or download the AWS WAF web ACL JSON file.
 
         {
           "Name": "",
@@ -150,7 +150,7 @@ When you create a web ACL, choose the same Region that you're using for your Ama
         
  Add the AWS WAF web ACL annotation to your ALB Ingress
  
- 1.    Edit the ALB Ingress and add the alb.ingress.kubernetes.io/waf-acl-id: annotation with the AWS WAF ID that you copied earlier:
+ 1.  Edit the ALB Ingress and add the alb.ingress.kubernetes.io/waf-acl-id: annotation with the AWS WAF ID that you copied earlier:
 
         kubectl edit ingress/ingress-2048 -n game-2048
 
