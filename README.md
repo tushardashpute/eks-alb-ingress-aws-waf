@@ -19,33 +19,33 @@ Create an OIDC provider and IAM role for the AWS Load Balancer Controller
 
 2. Download an IAM policy for the AWS Load Balancer Controller:
 
-      curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/install/iam_policy.json
+        curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/install/iam_policy.json
 
 3. Create an IAM policy using the policy that you downloaded from step 2:
 
-      aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
-      
-      {
-          "Policy": {
-              "PolicyName": "AWSLoadBalancerControllerIAMPolicy", 
-              "PermissionsBoundaryUsageCount": 0, 
-              "CreateDate": "2022-04-30T03:35:07Z", 
-              "AttachmentCount": 0, 
-              "IsAttachable": true, 
-              "PolicyId": "ANPAWXLRIGN25YQXTQZDX", 
-              "DefaultVersionId": "v1", 
-              "Path": "/", 
-              "Arn": "arn:aws:iam::4627568568669:policy/AWSLoadBalancerControllerIAMPolicy", 
-              "UpdateDate": "2022-04-30T03:35:07Z"
-          }
-      }
+        aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam_policy.json
+
+        {
+            "Policy": {
+                "PolicyName": "AWSLoadBalancerControllerIAMPolicy", 
+                "PermissionsBoundaryUsageCount": 0, 
+                "CreateDate": "2022-04-30T03:35:07Z", 
+                "AttachmentCount": 0, 
+                "IsAttachable": true, 
+                "PolicyId": "ANPAWXLRIGN25YQXTQZDX", 
+                "DefaultVersionId": "v1", 
+                "Path": "/", 
+                "Arn": "arn:aws:iam::4627568568669:policy/AWSLoadBalancerControllerIAMPolicy", 
+                "UpdateDate": "2022-04-30T03:35:07Z"
+            }
+        }
 
 
 Note: Copy the name of the policy's Amazon Resource Name (ARN) that's returned in Step 3.
 
 4. Create an IAM role for the AWS Load Balancer Controller and attach the role to the service account created in step 2:
 
-              eksctl create iamserviceaccount --cluster=eksdemo-qa --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::4627568568669:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve --region us-east-2
+        eksctl create iamserviceaccount --cluster=eksdemo-qa --namespace=kube-system --name=aws-load-balancer-controller --attach-policy-arn=arn:aws:iam::4627568568669:policy/AWSLoadBalancerControllerIAMPolicy --override-existing-serviceaccounts --approve --region us-east-2
 
 Install the AWS Load Balancer Controller using Helm 3.0.0
 
@@ -95,16 +95,16 @@ Install the AWS Load Balancer Controller using Helm 3.0.0
 
         alb.ingress.kubernetes.io/scheme: internet-facing
 
-Deploy Smaple Example: 
+**Deploy Smaple Example:**
 
 1.    Deploy an example application to verify that the ALB Ingress Controller creates an Application Load Balancer as a result of the Ingress object:
 
-        kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
+         kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.2.0/docs/examples/2048/2048_full.yaml
        
-        namespace/game-2048 created
-        deployment.apps/deployment-2048 created
-        service/service-2048 created
-        ingress.networking.k8s.io/ingress-2048 created
+         namespace/game-2048 created
+         deployment.apps/deployment-2048 created
+         service/service-2048 created
+         ingress.networking.k8s.io/ingress-2048 created
         
 2.  Verify that the Ingress resource is created and is associated with an Application Load Balancer:
 
