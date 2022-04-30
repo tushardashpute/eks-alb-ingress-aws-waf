@@ -186,3 +186,13 @@ Add the AWS WAF web ACL annotation to your ALB Ingress
                ingress:
                - hostname: k8s-game2048-ingress2-6d68b24489-553167937.us-east-2.elb.amazonaws.com
 
+Now to test WAF, we can add one rule that if URI contains hello then it needs to be block.
+
+
+<img width="1296" alt="image" src="https://user-images.githubusercontent.com/74225291/166106492-3027c8f0-57ca-43a9-b068-fe687d382caa.png">
+<img width="1280" alt="image" src="https://user-images.githubusercontent.com/74225291/166106499-84c923ad-f22e-45b0-8154-33320ea865f3.png">
+
+Requests other than /hello are allow , only /hello is blocked. 
+
+<img width="1249" alt="image" src="https://user-images.githubusercontent.com/74225291/166106624-e6096f69-ef41-49e4-b0d5-8c3a6e73352b.png">
+<img width="1277" alt="image" src="https://user-images.githubusercontent.com/74225291/166106459-54d1bb0d-be97-493c-8742-86f71ae54e92.png">
